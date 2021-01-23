@@ -11,43 +11,53 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const { getDiffieHellman } = require("crypto");
 
-class Employee {
-    constructor(name, id, email) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.getRole =
-        }
-}
-}
-
-getName()
-getId()
-getEmail()
-getRole()
 
 
 
-class Manager extends Employee {
-    constructor(officeNumber) {
-        this.officeNumber = officeNumber;
-    }
-}
 
-class Engineer extends Employee {
-    constructor(gitHub) {
-        this.gitHub = gitHub;
-    }
-}
 
-class Intern extends Employee {
-    constructor(name, id, email, school) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.school = school;
-    }
-}
+
+inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "team manager",
+            message: "What is your team manager's name?"
+        },
+        {
+
+            type: "input",
+            message: "What is your team manager's id?"
+        },
+        {
+            type: "input",
+            message: "What's your team manager's office number?"
+        },
+        {
+            type: "input",
+            message: "Which type of team member would you like to add?"
+        },
+        {
+            type: "checkbox"'
+        name: []
+        message: "What type of team member would you like to add?"
+    },
+        {}
+
+    ])
+
+
+What is your team manager's name?
+What is the team manager's id?
+What is the team manager's email?
+What is the tream manager's office number?
+Which type of team member would you like to add ?
+
+    What is your intern's name?
+What is your intern's email?
+What's is your intern's school ?
+
+
 
 
 // Write code to use inquirer to gather information about the development team members,
