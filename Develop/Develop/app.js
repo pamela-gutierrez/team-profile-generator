@@ -13,7 +13,7 @@ const render = require("./lib/htmlRenderer");
 const teamMember = [];
 
 // Manager Prompts
-const managerPrompts = () =>
+const managerPrompts = () => {
     inquirer
         .prompt([
             {
@@ -37,26 +37,37 @@ const managerPrompts = () =>
                 name: "email",
                 message: "What's your team manager's email?",
             }
-        ]);
+        ])
+
+        .then(response => teamMember.push(new Manager(response.teamManager, response.managerId, response.officeNumber, response.email)))
+        .then(() => teamRole())
+        .catch((err) => console.error(err));
+}
 
 managerPrompts()
-    .then(response => teamMember.push(new Manager(response.teamManager, response.managerId, response.officeNumber, response.email)))
-    .then(() => teamRole())
 
-
-const teamRole = () =>
+const teamRole = () => {
     inquirer
         .prompt([
             {
                 type: "list",
                 name: "teamRole",
                 choices: ["Engineer", "Intern", "The team is full!"],
-                message: "What type of team member would you like to add?",
+                message: "What type of team member would you like to add?"
             }
-        ])
+        ]).then(reponse => {
 
+            switch (response.teamRole) {
+                case "Intern": internPrompts();
+                    break;
+                case "Engineer": engineerPrompts();
+                    break;
+                default: print();
+            });
+}
 // Intern Questions
-const internPrompt = () =>
+
+const internPrompts = () => {
 
     inquirer
         .prompt([
@@ -81,15 +92,14 @@ const internPrompt = () =>
                 name: "school",
                 message: "Where did/does your intern go to school?"
             }
-        ]);
+        ])
 
-internPrompt()
-    .then(response => teamMember.push(new Intern(response.teamIntern, response.teamId, response.internEmail)))
-    .then(() => teamRole())
-
+        .then(response => teamMember.push(new Intern(response.teamIntern, response.teamId, response.internEmail)))
+        .then(() => teamRole())
+}
 
 // Engineeer Questions
-const engineerPrompts = () =>
+const engineerPrompts = () => {
     inquirer
         .prompt([
             {
@@ -115,31 +125,27 @@ const engineerPrompts = () =>
             }
         ])
 
-engineerPrompts()
-    .then(response => teamMember.push(new Engineer(response.teamEngineer, response.engineerId, response.officeNumber, response.engineerEmail)))
-    .then(() => teamRole())
+
+        .then(response => teamMember.push(new Engineer(response.teamEngineer, response.engineerId, response.officeNumber, response.engineerEmail)))
+        .then(() => teamRole())
+
+}
 
 
-// switch (response.teamRole) {
-//     case "Intern": internPrompt()
-//         break;
-//     case "Engineer": engineerPrompt()
-//         break;
-//     case "The team is full!": print()
-// }
+const print = (response) => {
+    render(teamMember);
+    fs.writeFile(outputPath, render(teamMember), function (err) {
+        if (err) {
+            throw (err)
+        }
+    })
+}
 
 
-    // print()
 
 
 // Make sure the intern and engineer prompts match with the function that asks the question.
 
-
-
-// switch(teamRole){
-//     case fromthis:tothis
-//     break
-// }
 
 
 

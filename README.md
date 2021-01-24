@@ -1,5 +1,5 @@
 ## Team Profile Generator
-This application allows the user, for our purposes this would be the team manager, to easily generate a team profile by answering a few simple questions. The application allows for the team manager to answer questions about themselves, as well as questions about the interns and engineers on their team. These will include the basics of name, email, and ID but also role-specific questions such a as where the intern went to school or what the engineer's GitHub username is. The goal is to make it easy-to-use, functional, and efficient. 
+This application allows the user, in this case the team manager, to easily generate a team profile by answering a few simple questions. The application allows for the team manager to answer questions about themselves, as well as questions about the interns and engineers on their team. These will include the basics of name, email, and ID but also role-specific questions such a as where the intern went to school or what the engineer's GitHub username is. The goal is to make it easy-to-use, functional, and efficient. 
 
 ![Site](weather-screenshot.png)
 
@@ -7,7 +7,7 @@ This application allows the user, for our purposes this would be the team manage
 * [HTML](https://developer.mozihlla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Git Hub](https://github.com/)
-* [JavaScript]()
+* [JavaScript](https://www.javascript.com/)
 *  Git - used to track changes to code
 ______________________________________________________________________________
   
