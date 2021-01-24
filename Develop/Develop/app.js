@@ -55,7 +55,7 @@ const teamRole = () => {
                 choices: ["Engineer", "Intern", "The team is full!"],
                 message: "What type of team member would you like to add?"
             }
-        ]).then(reponse => {
+        ]).then(response => {
 
             switch (response.teamRole) {
                 case "Intern": internPrompts();
@@ -63,8 +63,10 @@ const teamRole = () => {
                 case "Engineer": engineerPrompts();
                     break;
                 default: print();
-            });
+            }
+        });
 }
+
 // Intern Questions
 
 const internPrompts = () => {
