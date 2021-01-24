@@ -96,7 +96,7 @@ const internPrompts = () => {
             }
         ])
 
-        .then(response => teamMember.push(new Intern(response.teamIntern, response.teamId, response.internEmail)))
+        .then(response => teamMember.push(new Intern(response.teamIntern, response.internId, response.internEmail, response.school)))
         .then(() => teamRole())
 }
 
@@ -128,7 +128,7 @@ const engineerPrompts = () => {
         ])
 
 
-        .then(response => teamMember.push(new Engineer(response.teamEngineer, response.engineerId, response.officeNumber, response.engineerEmail)))
+        .then(response => teamMember.push(new Engineer(response.teamEngineer, response.engineerId, response.engineerEmail, response.github)))
         .then(() => teamRole())
 
 }
@@ -147,16 +147,6 @@ const print = (response) => {
 
 
 // Make sure the intern and engineer prompts match with the function that asks the question.
-
-
-
-
-
-
-
-
-
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
