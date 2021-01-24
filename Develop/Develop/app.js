@@ -9,53 +9,142 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const { getDiffieHellman } = require("crypto");
+
+const teamMember = [];
+
+// Manager Prompts
+const managerPrompts = () =>
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "teamManager",
+                message: "What is your team manager's name?",
+            },
+            {
+
+                type: "input",
+                name: "managerId",
+                message: "What is your team manager's id?",
+            },
+            {
+                type: "input",
+                name: "officeNumber",
+                message: "What's your team manager's office number?",
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "What's your team manager's email?",
+            }
+        ]);
+
+managerPrompts()
+    .then(response => teamMember.push(new Manager(response.teamManager, response.managerId, response.officeNumber, response.email)))
+    .then(() => teamRole())
+
+
+const teamRole = () =>
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "teamRole",
+                choices: ["Engineer", "Intern", "The team is full!"],
+                message: "What type of team member would you like to add?",
+            }
+        ])
+
+// Intern Questions
+const internPrompt = () =>
+
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "teamIntern",
+                message: "What is your team intern's name?",
+            },
+            {
+
+                type: "input",
+                name: "internId",
+                message: "What is your team intern's id?",
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What's your team intern's email?",
+            },
+            {
+                type: "input",
+                name: "school",
+                message: "Where did/does your intern go to school?"
+            }
+        ]);
+
+internPrompt()
+    .then(response => teamMember.push(new Intern(response.teamIntern, response.teamId, response.internEmail)))
+    .then(() => teamRole())
+
+
+// Engineeer Questions
+const engineerPrompts = () =>
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "teamEngineer",
+                message: "What is your team engineer's name?",
+            },
+            {
+
+                type: "input",
+                name: "engineerId",
+                message: "What is your team engineer's id?",
+            },
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "What's your team engineer's email?",
+            },
+            {
+                type: "input",
+                name: "github",
+                message: "What is your engineer's GitHub username?",
+            }
+        ])
+
+engineerPrompts()
+    .then(response => teamMember.push(new Engineer(response.teamEngineer, response.engineerId, response.officeNumber, response.engineerEmail)))
+    .then(() => teamRole())
+
+
+// switch (response.teamRole) {
+//     case "Intern": internPrompt()
+//         break;
+//     case "Engineer": engineerPrompt()
+//         break;
+//     case "The team is full!": print()
+// }
+
+
+    // print()
+
+
+// Make sure the intern and engineer prompts match with the function that asks the question.
+
+
+
+// switch(teamRole){
+//     case fromthis:tothis
+//     break
+// }
 
 
 
 
 
-
-
-inquirer
-    .prompt([
-        {
-            type: "input",
-            name: "team manager",
-            message: "What is your team manager's name?"
-        },
-        {
-
-            type: "input",
-            message: "What is your team manager's id?"
-        },
-        {
-            type: "input",
-            message: "What's your team manager's office number?"
-        },
-        {
-            type: "input",
-            message: "Which type of team member would you like to add?"
-        },
-        {
-            type: "checkbox"'
-        name: []
-        message: "What type of team member would you like to add?"
-    },
-        {}
-
-    ])
-
-
-What is your team manager's name?
-What is the team manager's id?
-What is the team manager's email?
-What is the tream manager's office number?
-Which type of team member would you like to add ?
-
-    What is your intern's name?
-What is your intern's email?
-What's is your intern's school ?
 
 
 
